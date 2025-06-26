@@ -1,0 +1,31 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String             @id @default(cuid())
+  email     String             @unique
+  username  String             @unique
+  password  String // Guardaremos el hash, no la contraseña en texto plano
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+  tokens    InvalidatedToken[] // Relación con los tokens invalidados
+}
+
+model InvalidatedToken {
+  id            String   @id @default(cuid())
+  token         String   @unique // El token JWT invalidado
+  userId        String // Relación con el usuario
+  user          User     @relation(fields: [userId], references: [id])
+  reason        String? // Opcional: razón de invalidación (logout, cambio de contraseña, etc.)
+  invalidatedAt DateTime @default(now()) // Fecha de invalidación
+  expiresAt     DateTime // Fecha de expiración original del token
+
+  @@index([userId]) // Índice para búsquedas por usuario
+  @@index([expiresAt]) // Índice para limpieza automática
+}
