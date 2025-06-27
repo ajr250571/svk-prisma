@@ -47,7 +47,7 @@
 					id="username"
 					bind:value={username}
 					required
-					class="input input-bordered w-full"
+					class="input input-primary input-bordered mt-2 w-full"
 				/>
 			</div>
 
@@ -60,7 +60,7 @@
 					id="password"
 					bind:value={password}
 					required
-					class="input input-bordered w-full"
+					class="input input-primary input-bordered mt-2 w-full"
 				/>
 			</div>
 

@@ -59,7 +59,7 @@
 					id="username"
 					bind:value={username}
 					required
-					class="input input-bordered w-full"
+					class="input input-primary input-bordered mt-2 w-full"
 				/>
 			</div>
 			<div class="form-control">
@@ -71,7 +71,7 @@
 					id="email"
 					bind:value={email}
 					required
-					class="input input-bordered w-full"
+					class="input input-primary input-bordered mt-2 w-full"
 				/>
 			</div>
 			<div class="form-control">
@@ -83,12 +83,12 @@
 					id="password"
 					bind:value={password}
 					required
-					class="input input-bordered w-full"
+					class="input input-primary input-bordered mt-2 w-full"
 				/>
 			</div>
 
 			<button type="submit" class="btn btn-primary w-full" disabled={loading}>
-				{loading ? 'Cargando...' : 'Iniciar sesión'}
+				{loading ? 'Cargando...' : 'Registrarse'}
 			</button>
 		</form>
 
