@@ -22,7 +22,7 @@
 				error = data.error;
 			}
 		} catch (err) {
-			error = 'Error al conectar con el servidor';
+			error = 'Error al iniciar sesión. Por favor, inténtalo de nuevo.';
 		} finally {
 			loading = false;
 		}
@@ -39,28 +39,28 @@
 		{/if}
 		<form class="space-y-4" on:submit|preventDefault={handleLogin}>
 			<div class="form-control">
-				<label class="label" for="username">
+				<label class="label mb-2" for="password">
 					<span class="label-text">Usuario</span>
 				</label>
 				<input
 					type="text"
-					id="username"
-					bind:value={username}
+					class="input input-primary input-bordered w-full"
 					required
-					class="input input-primary input-bordered mt-2 w-full"
+					placeholder="Username"
+					bind:value={username}
 				/>
 			</div>
 
 			<div class="form-control">
-				<label class="label" for="password">
+				<label class="label mb-2" for="password">
 					<span class="label-text">Contraseña</span>
 				</label>
 				<input
 					type="password"
-					id="password"
-					bind:value={password}
+					class="input input-primary input-bordered w-full"
 					required
-					class="input input-primary input-bordered mt-2 w-full"
+					placeholder="Password"
+					bind:value={password}
 				/>
 			</div>
 

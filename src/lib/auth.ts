@@ -35,6 +35,16 @@ export async function loginUser(username: string, password: string) {
 	return { user, token };
 }
 
-export function verifyToken(token: string) {
+export async function verifyToken(token: string) {
+	// Verificar si el token está en la lista negra
+	const isInvalidated = await prisma.invalidatedToken.findUnique({
+		where: { token }
+	});
+
+	if (isInvalidated) {
+		throw new Error('Token invalidado');
+	}
+
+	// Resto de la verificación JWT normal
 	return jwt.verify(token, JWT_SECRET);
 }

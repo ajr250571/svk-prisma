@@ -18,7 +18,7 @@ export const handle: Handle = async ({ event, resolve }) => {
 		}
 
 		try {
-			const decoded = verifyToken(session) as { userId: string };
+			const decoded = (await verifyToken(session)) as { userId: string };
 
 			// Obtener el usuario de la base de datos
 			const user = await prisma.user.findUnique({

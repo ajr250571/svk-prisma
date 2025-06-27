@@ -51,40 +51,53 @@
 		{/if}
 		<form class="space-y-4" on:submit|preventDefault={handleRegister}>
 			<div class="form-control">
-				<label class="label" for="username">
+				<label class="label mb-2" for="password">
 					<span class="label-text">Usuario</span>
 				</label>
 				<input
 					type="text"
-					id="username"
-					bind:value={username}
+					class="input validator input-primary input-bordered w-full"
 					required
-					class="input input-primary input-bordered mt-2 w-full"
+					placeholder="Username"
+					pattern="[A-Za-z][A-Za-z0-9\-]*"
+					minlength="3"
+					maxlength="30"
+					title="Solo letras, números y guiones"
+					bind:value={username}
 				/>
+				<p class="validator-hint">Entre 3 y 30 caracteres. Solo letras, números y guiones</p>
 			</div>
 			<div class="form-control">
-				<label class="label" for="email">
+				<label class="label mb-2" for="email">
 					<span class="label-text">Correo electrónico</span>
 				</label>
 				<input
+					class="input validator input-primary input-bordered w-full"
 					type="email"
-					id="email"
-					bind:value={email}
 					required
-					class="input input-primary input-bordered mt-2 w-full"
+					placeholder="mail@site.com"
+					bind:value={email}
 				/>
+				<div class="validator-hint">Ingrese un email valido.</div>
 			</div>
 			<div class="form-control">
-				<label class="label" for="password">
+				<label class="label mb-2" for="password">
 					<span class="label-text">Contraseña</span>
 				</label>
 				<input
 					type="password"
-					id="password"
-					bind:value={password}
+					class="input validator input-primary input-bordered w-full"
 					required
-					class="input input-primary input-bordered mt-2 w-full"
+					placeholder="Password"
+					minlength="8"
+					pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).*"
+					title="Debe tener al menos 8 caracteres, incluyendo un número, una letra minúscula y una letra mayúscula"
+					bind:value={password}
 				/>
+				<p class="validator-hint">
+					Debe tener por lo menos 8 caracteres. Al menos un numero, una letra mayuscula y una
+					minuscula.
+				</p>
 			</div>
 
 			<button type="submit" class="btn btn-primary w-full" disabled={loading}>
